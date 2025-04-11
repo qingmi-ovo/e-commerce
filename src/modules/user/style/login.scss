@@ -1,0 +1,298 @@
+// 登录页样式
+
+// 变量定义
+$primary-color: #FF5000;
+$box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+$border-radius: 8px;
+$transition-time: 0.3s;
+
+// 主容器样式
+.login-container {
+  min-height: 100vh;
+  width: 100%;
+  padding: 20px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// 登录卡片样式
+.login-box {
+  width: 400px;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  
+  // 卡片标题
+  .login-header {
+    text-align: center;
+    margin-bottom: 30px;
+    
+    h2 {
+      font-size: 24px;
+      color: #333;
+      margin: 0;
+      font-weight: 500;
+    }
+  }
+  
+  // 登录方式选项卡
+  .login-tabs {
+    display: flex;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 24px;
+    
+    .tab-item {
+      flex: 1;
+      text-align: center;
+      padding: 12px 0;
+      cursor: pointer;
+      font-size: 16px;
+      color: #666;
+      transition: all $transition-time ease;
+      
+      &.active {
+        color: $primary-color;
+        border-bottom: 2px solid $primary-color;
+      }
+      
+      &:hover {
+        color: $primary-color;
+      }
+    }
+  }
+  
+  // 表单样式
+  .login-form {
+    margin-bottom: 20px;
+    
+    // 输入框样式
+    :deep(.el-input__wrapper) {
+      transition: all $transition-time ease;
+      
+      &.is-focus {
+        box-shadow: 0 0 0 1px $primary-color inset !important;
+      }
+    }
+    
+    // 验证码容器
+    .captcha-container, 
+    .sms-container {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .captcha-input, 
+    .sms-input {
+      flex: 1;
+    }
+    
+    .captcha-container {
+      display: flex;
+      align-items: center;
+      
+      .captcha-input {
+        flex: 1;
+      }
+      
+      .captcha-img {
+        width: 120px;
+        height: 40px;
+        margin-left: 10px;
+        border-radius: 4px;
+        overflow: hidden;
+        cursor: pointer;
+        position: relative;
+        background-color: #f5f5f5;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        
+        &:hover {
+          transform: scale(1.05);
+        }
+        
+        &:active {
+          transform: scale(0.95);
+        }
+        
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: opacity 0.3s ease;
+        }
+        
+        &.loading {
+          &::after {
+            content: '加载中...';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            font-size: 12px;
+            color: #666;
+          }
+          
+          img {
+            opacity: 0.3;
+          }
+        }
+      }
+    }
+    
+    .sms-button {
+      min-width: 120px;
+    }
+  }
+  
+  // 选项区域
+  .form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    
+    .forget-password {
+      color: #999;
+      font-size: 14px;
+      text-decoration: none;
+      
+      &:hover {
+        color: $primary-color;
+      }
+    }
+  }
+  
+  // 协议勾选项样式
+  .agreement-item {
+    margin-bottom: 20px;
+    
+    .el-checkbox {
+      height: auto;
+      
+      .el-checkbox__label {
+        font-size: 14px;
+        color: #666;
+        
+        a {
+          color: $primary-color;
+          text-decoration: none;
+          
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+    
+    // 错误提示样式
+    &.is-error {
+      .el-checkbox__label {
+        color: #f56c6c;
+      }
+    }
+  }
+  
+  // 登录按钮
+  .login-button {
+    width: 100%;
+    height: 40px;
+    background-color: $primary-color;
+    border-color: $primary-color;
+    transition: all $transition-time ease;
+    
+    &:hover, &:focus {
+      background-color: lighten($primary-color, 5%);
+      border-color: lighten($primary-color, 5%);
+    }
+    
+    &:active {
+      background-color: darken($primary-color, 5%);
+      border-color: darken($primary-color, 5%);
+    }
+  }
+  
+  // 登录类型选择器
+  .login-type-selector {
+    margin: 15px 0;
+    text-align: center;
+    
+    p {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 8px;
+    }
+    
+    .el-radio {
+      margin-right: 15px;
+      margin-left: 0;
+      font-size: 13px;
+      
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+    
+    .el-radio__label {
+      padding-left: 5px;
+    }
+  }
+  
+  // 底部链接
+  .login-footer {
+    text-align: center;
+    font-size: 14px;
+    color: #999;
+    
+    .register-link {
+      color: $primary-color;
+      margin-left: 5px;
+      text-decoration: none;
+      
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+// 响应式布局
+@media (max-width: 768px) {
+  .login-container {
+    background: none; // 移动端隐藏背景图
+    padding: 15px;
+  }
+  
+  .login-box {
+    width: 100%;
+    padding: 20px;
+    background-color: #fff;
+  }
+  
+  .login-header h2 {
+    font-size: 20px;
+  }
+  
+  .form-options {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .captcha-img {
+    width: 100px;
+  }
+  
+  .sms-button {
+    min-width: 100px;
+  }
+}

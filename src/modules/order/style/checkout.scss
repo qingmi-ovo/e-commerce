@@ -1,0 +1,393 @@
+/* 订单结算页样式 */
+
+// 地址选择器样式
+.address-selector {
+  border: 1px dashed #ddd;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+  
+  &:hover {
+    border-color: #dcdfe6;
+    background-color: #f9f9f9;
+  }
+  
+  &.active {
+    border-color: #FF5000;
+    border-style: solid;
+    background-color: #fff7f5;
+    
+    &::after { 
+      content: '✓'; 
+      color: #FF5000; 
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  }
+  
+  .address-info {
+    margin-bottom: 8px;
+    
+    .name {
+      font-weight: 500;
+      margin-right: 10px;
+    }
+    
+    .phone {
+      color: #666;
+    }
+  }
+  
+  .address-detail {
+    color: #333;
+    line-height: 1.5;
+  }
+  
+  .address-actions {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    
+    .action-btn {
+      color: #409eff;
+      cursor: pointer;
+      
+      &:hover {
+        color: #FF5000;
+      }
+    }
+  }
+}
+
+// 支付方式样式
+.payment-method {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin: 20px 0;
+  
+  .payment-item {
+    width: 180px;
+    height: 60px;
+    border: 1px solid #dcdfe6;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s;
+    
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(255, 80, 0, 0.1);
+    }
+    
+    &.active {
+      border-color: #FF5000;
+      background-color: #fff7f5;
+      color: #FF5000;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 0 20px 20px;
+        border-color: transparent transparent #FF5000 transparent;
+      }
+      
+      &::before {
+        content: '✓';
+        position: absolute;
+        bottom: 1px;
+        right: 3px;
+        font-size: 12px;
+        color: white;
+        z-index: 1;
+      }
+    }
+    
+    .payment-icon {
+      width: 24px;
+      height: 24px;
+      margin-right: 8px;
+    }
+    
+    .payment-name {
+      font-size: 14px;
+    }
+  }
+}
+
+// 订单项列表
+.order-items {
+  margin: 20px 0;
+  
+  .order-item {
+    display: flex;
+    padding: 15px 0;
+    border-bottom: 1px solid #f0f0f0;
+    
+    &:last-child {
+      border-bottom: none;
+    }
+    
+    .item-image {
+      width: 80px;
+      height: 80px;
+      margin-right: 15px;
+      border: 1px solid #eee;
+      object-fit: cover;
+    }
+    
+    .item-info {
+      flex: 1;
+      
+      .item-title {
+        font-size: 14px;
+        color: #333;
+        margin-bottom: 8px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      
+      .item-specs {
+        font-size: 12px;
+        color: #999;
+        margin-bottom: 8px;
+        
+        span {
+          margin-right: 10px;
+        }
+      }
+    }
+    
+    .item-price {
+      width: 80px;
+      text-align: center;
+      color: #333;
+    }
+    
+    .item-quantity {
+      width: 80px;
+      text-align: center;
+    }
+    
+    .item-total {
+      width: 100px;
+      text-align: right;
+      font-weight: 500;
+      color: #FF5000;
+    }
+  }
+}
+
+// 订单备注
+.order-remark {
+  margin: 20px 0;
+  
+  .remark-title {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .remark-input {
+    width: 100%;
+    
+    :deep(.el-textarea__inner) {
+      resize: none;
+      min-height: 80px;
+    }
+  }
+}
+
+// 订单汇总
+.order-summary {
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 4px;
+  margin: 20px 0;
+  
+  .summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 14px;
+    
+    .summary-label {
+      color: #666;
+    }
+    
+    .summary-value {
+      color: #333;
+      
+      &.discount {
+        color: #FF5000;
+      }
+    }
+    
+    &.total {
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 1px solid #eee;
+      
+      .summary-label {
+        font-size: 16px;
+        font-weight: 500;
+        color: #333;
+      }
+      
+      .summary-value {
+        font-size: 20px;
+        font-weight: 500;
+        color: #FF5000;
+      }
+    }
+  }
+}
+
+// 订单提交按钮
+.order-submit {
+  display: flex;
+  justify-content: flex-end;
+  margin: 30px 0;
+  
+  .submit-btn {
+    width: 150px;
+    height: 40px;
+    font-size: 16px;
+    background-color: #FF5000;
+    border-color: #FF5000;
+    
+    &:hover, &:focus {
+      background-color: #ff6a1f;
+      border-color: #ff6a1f;
+    }
+    
+    &:active {
+      background-color: #e64600;
+      border-color: #e64600;
+    }
+  }
+}
+
+// 状态步骤条样式
+.el-steps {
+  margin: 20px 0;
+  
+  :deep(.el-step__head.is-process) { 
+    color: #FF5000;
+    border-color: #FF5000;
+  }
+  
+  :deep(.el-step__head.is-finish) {
+    color: #FF5000;
+    border-color: #FF5000;
+  }
+  
+  :deep(.el-step__title.is-process) {
+    color: #FF5000;
+  }
+  
+  :deep(.el-step__title.is-finish) {
+    color: #FF5000;
+  }
+  
+  :deep(.el-step__line) {
+    background-color: #dcdfe6;
+  }
+  
+  :deep(.el-step__icon.is-text) {
+    border-color: currentColor;
+    
+    &.is-process {
+      background-color: #FF5000;
+      color: white;
+    }
+  }
+}
+
+// 地址选择器组件样式
+.address-selector-component {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin: 15px 0;
+  
+  .address-card {
+    width: calc(50% - 8px);
+    box-sizing: border-box;
+    border: 1px dashed #ddd;
+    padding: 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+    
+    &:hover {
+      border-color: #dcdfe6;
+    }
+    
+    &.active {
+      border-color: #FF5000;
+      border-style: solid;
+      
+      &::after { 
+        content: '✓'; 
+        color: #FF5000; 
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 18px;
+        font-weight: bold;
+      }
+    }
+  }
+  
+  .add-address {
+    width: calc(50% - 8px);
+    height: 120px;
+    border: 1px dashed #dcdfe6;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+    
+    &:hover {
+      border-color: #FF5000;
+      color: #FF5000;
+    }
+    
+    .add-icon {
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+    
+    .add-text {
+      font-size: 14px;
+    }
+  }
+}

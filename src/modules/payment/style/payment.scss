@@ -1,0 +1,193 @@
+/* 支付模块通用样式 */
+@use "sass:color";
+
+// 主题颜色
+$primary-color: #FF5000;  // 主要品牌色
+$success-color: #67C23A;  // 成功状态色
+$warning-color: #E6A23C;  // 警告状态色
+$danger-color: #F56C6C;   // 危险状态色
+$border-color: #EBEEF5;   // 边框颜色
+$text-color: #303133;     // 主要文字颜色
+$text-color-secondary: #606266;  // 次要文字颜色
+
+// 支付方式选择器样式
+.payment-method {
+  border: 1px solid #eee;
+  border-radius: 4px;
+  padding: 15px;
+  margin-bottom: 20px;
+  transition: all 0.3s;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  
+  &:hover {
+    border-color: $primary-color;
+    box-shadow: 0 0 10px rgba(255, 80, 0, 0.1);
+    
+    img { 
+      transform: scale(1.05); 
+    }
+  }
+  
+  &.active {
+    border-color: $primary-color;
+    background-color: rgba(255, 80, 0, 0.05);
+  }
+  
+  img {
+    height: 30px;
+    margin-right: 10px;
+    transition: inherit;
+  }
+  
+  .method-name {
+    font-weight: 500;
+    color: $text-color;
+  }
+  
+  .method-desc {
+    font-size: 12px;
+    color: $text-color-secondary;
+    margin-top: 4px;
+  }
+}
+
+// 支付操作区域样式
+.payment-actions {
+  margin: 20px 0;
+  text-align: center;
+  
+  .el-button {
+    padding: 12px 40px;
+    font-size: 16px;
+    
+    &--primary {
+      background-color: $primary-color;
+      border-color: $primary-color;
+      
+      &:hover, &:focus {
+        background-color: color.adjust($primary-color, $lightness: 10%);
+        border-color: color.adjust($primary-color, $lightness: 10%);
+      }
+    }
+  }
+}
+
+// 支付二维码样式
+.qrcode-container {
+  text-align: center;
+  padding: 20px 0;
+  
+  .qrcode-title {
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: $text-color;
+  }
+  
+  .qrcode-image {
+    width: 200px;
+    height: 200px;
+    padding: 10px;
+    border: 1px solid $border-color;
+    border-radius: 8px;
+    margin: 0 auto 20px;
+    
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  
+  .qrcode-tip {
+    color: $text-color-secondary;
+    font-size: 14px;
+  }
+}
+
+// 支付结果样式
+.result-container {
+  text-align: center;
+  padding: 30px 0;
+  
+  .result-icon {
+    animation: bounceIn 0.5s;
+    margin: 30px 0;
+    font-size: 64px;
+    
+    &.success {
+      color: $success-color;
+    }
+    
+    &.failed {
+      color: $danger-color;
+    }
+    
+    &.timeout {
+      color: $warning-color;
+    }
+  }
+  
+  .result-title {
+    font-size: 24px;
+    color: $text-color;
+    margin-bottom: 10px;
+  }
+  
+  .result-desc {
+    font-size: 14px;
+    color: $text-color-secondary;
+    margin-bottom: 30px;
+  }
+}
+
+// 倒计时样式
+.countdown-timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $warning-color;
+  
+  .timer-icon {
+    margin-right: 8px;
+  }
+  
+  .timer-text {
+    font-size: 16px;
+    font-family: monospace;
+  }
+}
+
+// 动画效果
+@keyframes bounceIn {
+  0% { transform: scale(0.5); opacity: 0; }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+// 响应式调整
+@media (max-width: 768px) {
+  .payment-method {
+    padding: 10px;
+    
+    img {
+      height: 24px;
+    }
+  }
+  
+  .qrcode-container {
+    .qrcode-image {
+      width: 180px;
+      height: 180px;
+    }
+  }
+  
+  .result-icon {
+    font-size: 48px;
+  }
+} 

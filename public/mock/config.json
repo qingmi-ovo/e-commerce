@@ -1,5 +1,0 @@
-{
-  "enableMock": true,
-  "apiPrefix": "/mock",
-  "mockDelay": 500
-} 

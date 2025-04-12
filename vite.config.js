@@ -9,19 +9,18 @@ export default defineConfig(({ command }) => {
       vue(),
       viteMockServe({ 
         mockPath: 'src/mock',
-        localEnabled: command === 'serve', // 开发环境启用
-        prodEnabled: true, // 修改为true，启用生产环境mock
+        localEnabled: true, // 在所有环境中启用
+        prodEnabled: true, // 在生产环境也启用
+        injectCode: `
+          import { setupProdMockServer } from './mock/index';
+          setupProdMockServer();
+        `,
         supportTs: false,
         watchFiles: true,
         logger: true,
         ignore: /^\_/,
         mockUrlPrefix: '/mock',
-        ignoreFiles: ['_*.js'],
-        // 增加生产环境配置
-        injectCode: `
-          import { setupProdMockServer } from './src/mock/mockProdServer';
-          setupProdMockServer();
-        `
+        ignoreFiles: ['_*.js']
       })
     ],
     resolve: {

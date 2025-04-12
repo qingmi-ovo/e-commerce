@@ -4,9 +4,10 @@ import goodsMock from './modules/goods.mock'
 import cartMock from './modules/cart.mock'
 import orderMock from './modules/order.mock'
 import paymentMock from './modules/payment.mock'
+import { createProdMockServer } from 'vite-plugin-mock/es/createProdMockServer'
 
-// 合并所有mock配置
-const mockModules = [
+// 所有mock配置
+const mocks = [
   ...userMock,
   ...goodsMock,
   ...cartMock,
@@ -14,5 +15,10 @@ const mockModules = [
   ...paymentMock
 ]
 
-// 同时支持开发环境和生产环境
-export default mockModules 
+// 生产环境下设置mock服务
+export function setupProdMockServer() {
+  createProdMockServer([...mocks])
+}
+
+// 开发环境直接导出配置数组
+export default mocks 
